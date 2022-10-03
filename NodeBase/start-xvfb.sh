@@ -9,7 +9,10 @@ if [ "${START_XVFB:-$SE_START_XVFB}" = true ] ; then
   export GEOMETRY="${SCREEN_WIDTH}""x""${SCREEN_HEIGHT}""x""${SCREEN_DEPTH}"
 
   rm -f /tmp/.X*lock
-
+  
+  # comments RootMenu to disable right click on fluxbox
+  sudo sed -i 's/OnDesktop Mouse3 :RootMenu/# OnDesktop Mouse3 :RootMenu/g' /etc/X11/fluxbox/keys
+  
   # Command reference
   # http://manpages.ubuntu.com/manpages/focal/man1/xvfb-run.1.html
   # http://manpages.ubuntu.com/manpages/focal/man1/Xvfb.1.html

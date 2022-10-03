@@ -53,6 +53,7 @@ RUN apt-get update -qqy \
     fluxbox \
   && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
+
 #================
 # Font libraries
 #================
@@ -109,6 +110,7 @@ RUN  wget -nv -O noVNC.zip \
   && rm -rf websockify-${WEBSOCKIFY_SHA}/tests \
   && mv websockify-${WEBSOCKIFY_SHA} /opt/bin/noVNC/utils/websockify
 
+COPY vnc_lite_robomotion.html /opt/bin/noVNC/vnc_lite.html
 #=========================================================================================================================================
 # Run this command for executable file permissions for /dev/shm when this is a "child" container running in Docker Desktop and WSL2 distro
 #=========================================================================================================================================

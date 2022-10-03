@@ -13,21 +13,7 @@ MINOR := $(word 2,$(subst ., ,$(TAG_VERSION)))
 MAJOR_MINOR_PATCH := $(word 1,$(subst -, ,$(TAG_VERSION)))
 FFMPEG_TAG_VERSION := $(or $(FFMPEG_TAG_VERSION),$(FFMPEG_TAG_VERSION),ffmpeg-4.3.1)
 
-all: hub \
-	distributor \
-	router \
-	sessions \
-	sessionqueue \
-	event_bus \
-	chrome \
-	edge \
-	firefox \
-	docker \
-	standalone_chrome \
-	standalone_edge \
-	standalone_firefox \
-	standalone_docker \
-	video
+all: chrome 
 
 
 build: all
@@ -59,7 +45,7 @@ node_base: base
 	cd ./NodeBase && docker build $(BUILD_ARGS) $(FROM_IMAGE_ARGS) -t $(NAME)/node-base:$(TAG_VERSION) .
 
 chrome: node_base
-	cd ./NodeChrome && docker build $(BUILD_ARGS) $(FROM_IMAGE_ARGS) -t $(NAME)/node-chrome:$(TAG_VERSION) .
+	cd ./NodeChrome && docker build $(BUILD_ARGS) $(FROM_IMAGE_ARGS) -t gcr.io/robomotion/selenium/node-chrome . && docker push gcr.io/robomotion/selenium/node-chrome
 
 chrome_dev:
 	cd ./NodeChrome && docker build $(BUILD_ARGS) $(FROM_IMAGE_ARGS) --build-arg CHROME_VERSION=google-chrome-unstable -t $(NAME)/node-chrome:dev .

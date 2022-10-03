@@ -43,17 +43,17 @@ RUN echo "${TZ}" > /etc/timezone \
 #========================================
 # Add normal user and group with passwordless sudo
 #========================================
-RUN groupadd seluser \
+RUN groupadd robomotion \
          --gid 1201 \
-  && useradd seluser \
+  && useradd robomotion \
          --create-home \
          --gid 1201 \
          --shell /bin/bash \
          --uid 1200 \
-  && usermod -a -G sudo seluser \
+  && usermod -a -G sudo robomotion \
   && echo 'ALL ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers \
-  && echo 'seluser:secret' | chpasswd
-ENV HOME=/home/seluser
+  && echo 'robomotion:secret' | chpasswd
+ENV HOME=/home/robomotion
 
 #======================================
 # Add Grid check script
