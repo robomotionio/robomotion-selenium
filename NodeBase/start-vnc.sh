@@ -2,8 +2,21 @@
 #
 # IMPORTANT: Change this file only in directory NodeBase!
 
+mkdir /home/robomotion/.ssh
+PubKey="${ROBOT_PUBLIC_KEY}"
+echo $PubKey > /home/robomotion/.ssh/authorized_keys
+echo ${SELENIUM_PUBLIC_KEY} > /home/robomotion/.ssh/id_rsa_temp.pub
+base64 -d /home/robomotion/.ssh/id_rsa_temp.pub > /home/robomotion/.ssh/id_rsa.pub
+rm /home/robomotion/.ssh/id_rsa_temp.pub
+
+echo ${SELENIUM_PRIVATE_KEY} > /home/robomotion/.ssh/id_rsa_temp
+base64 -d /home/robomotion/.ssh/id_rsa_temp > /home/robomotion/.ssh/id_rsa
+rm /home/robomotion/.ssh/id_rsa_temp
+chmod 600 /home/robomotion/.ssh/id_rsa
+mkdir /home/robomotion/Downloads
+
 if [ "${START_XVFB:-$SE_START_XVFB}" = true ] ; then
-  # Centering wallpaper
+  # Centering wallpaper  
   for i in $(seq 1 10)
   do
     sleep 0.5

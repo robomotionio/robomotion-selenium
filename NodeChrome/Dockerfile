@@ -63,3 +63,4 @@ RUN if [ -z "$CHROME_DRIVER_VERSION" ]; \
 # Dumping Browser name and version for config
 #============================================
 RUN echo "chrome" > /opt/selenium/browser_name
+EXPOSE 22

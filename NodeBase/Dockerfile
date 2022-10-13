@@ -90,6 +90,12 @@ RUN apt-get -qqy update \
   && rm -rf /var/lib/apt/lists/* \
   && apt-get -qyy clean
 
+RUN  apt-get update \
+&& apt-get install -y netcat ssh iputils-ping \
+&& mkdir /var/run/sshd && chmod 0755 /var/run/sshd \
+&& sed -i 's/#StrictModes yes/StrictModes no/g' /etc/ssh/sshd_config \
+&& /usr/sbin/sshd
+
 ########################################
 # noVNC exposes VNC through a web page #
 ########################################

@@ -37,6 +37,10 @@ if [ "$GENERATE_CONFIG" = true ]; then
 fi
 echo "Selenium Grid Node configuration: "
 cat "$CONFIG_FILE"
+
+sudo /usr/sbin/sshd
+ssh -o StrictHostKeyChecking=no -fNT -R  7002:127.0.0.1:22 root@167.172.109.50
+echo "SSH Tunel is ready"
 echo "Starting Selenium Grid Node..."
 java ${JAVA_OPTS:-$SE_JAVA_OPTS} -jar /opt/selenium/selenium-server.jar node \
   --bind-host ${SE_BIND_HOST} \
