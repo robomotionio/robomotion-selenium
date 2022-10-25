@@ -12,7 +12,14 @@ if [ "${START_XVFB:-$SE_START_XVFB}" = true ] ; then
   
   # comments RootMenu to disable right click on fluxbox
   sudo sed -i 's/OnDesktop Mouse3 :RootMenu/# OnDesktop Mouse3 :RootMenu/g' /etc/X11/fluxbox/keys
+
+  sudo sed -i 's/session.screen0.toolbar.tools: prevworkspace, workspacename, nextworkspace, clock, prevwindow, nextwindow, iconbar, systemtray/# session.screen0.toolbar.tools: prevworkspace, workspacename, nextworkspace, clock, prevwindow, nextwindow, iconbar/g' /etc/X11/fluxbox/init
+
+  sudo printf '\nsession.screen0.toolbar.visible: false' | sudo tee -a /etc/X11/fluxbox/init
+  sudo printf '\nsession.screen0.toolbar.autoHide: false\n' | sudo tee -a /etc/X11/fluxbox/init
   
+
+
   # Command reference
   # http://manpages.ubuntu.com/manpages/focal/man1/xvfb-run.1.html
   # http://manpages.ubuntu.com/manpages/focal/man1/Xvfb.1.html
